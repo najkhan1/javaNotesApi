@@ -1,0 +1,19 @@
+services:
+  cassandra:
+    image: 'cassandra:4.1.0'
+    environment:
+      - 'CASSANDRA_DC=dc1'
+      - 'CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch'
+    ports:
+      - 9042:9042
+    networks:
+      - notes-api
+    volumes:
+      - db-data:/etc/data
+
+networks:
+  notes-api:
+    driver: bridge
+
+volumes:
+  db-data:
