@@ -20,16 +20,6 @@ public class JavaNotesApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(JavaNotesApiApplication.class, args);
     }
-
-//    @Bean
-//    ApplicationRunner applicationRunner(HealthCheckTRepository healthCheckTRepository) {
-//
-//        return args -> {
-//            HealthCheckTable kk = healthCheckTRepository.getHealthCheck();
-//            log.warn("message from @ConfigurationProperties {}", kk);
-//            System.out.println("message is " + kk);
-//        };
-//    }
 }
 
 
