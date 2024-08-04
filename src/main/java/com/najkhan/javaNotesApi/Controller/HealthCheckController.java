@@ -28,13 +28,4 @@ public class HealthCheckController {
     public ResponseEntity<Map<Downstream, Status>> handleHealthCheck() {
         return ResponseEntity.ok(healthCheckService.getHealthCheckStatus());
     }
-
-    @GetMapping("/hello")
-    public ResponseEntity<String> helloWorld() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        String currentUser = authentication.getName();
-        return ResponseEntity.ok("hello world");
-    }
-
 }
