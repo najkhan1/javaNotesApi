@@ -1,13 +1,13 @@
 package com.najkhan.javaNotesApi.services;
 
-import com.najkhan.javaNotesApi.model.RegisterUserDto;
+import com.najkhan.javaNotesApi.model.requests.RegisterUserRequest;
 import com.najkhan.javaNotesApi.model.Users;
 import com.najkhan.javaNotesApi.repository.UsersRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import  com.najkhan.javaNotesApi.model.LoginUserDto;
+import com.najkhan.javaNotesApi.model.requests.LoginUserRequest;
 
 @Service
 public class AuthenticationService {
@@ -27,7 +27,7 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Users signup(RegisterUserDto input) {
+    public Users signup(RegisterUserRequest input) {
         Users user = Users.builder()
                 .id(input.getId())
                 .fullName(input.getFullName())
@@ -37,7 +37,7 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
-    public Users authenticate(LoginUserDto input) {
+    public Users authenticate(LoginUserRequest input) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         input.getEmail(),
@@ -48,4 +48,5 @@ public class AuthenticationService {
         return userRepository.findByEmail(input.getEmail())
                 .orElseThrow();
     }
+
 }

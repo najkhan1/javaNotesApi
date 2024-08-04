@@ -1,9 +1,9 @@
-package com.najkhan.javaNotesApi.model;
+package com.najkhan.javaNotesApi.model.requests;
 
 import lombok.Data;
 
 @Data
-public class LoginUserDto {
+public class LoginUserRequest {
     private String email;
 
     private String password;

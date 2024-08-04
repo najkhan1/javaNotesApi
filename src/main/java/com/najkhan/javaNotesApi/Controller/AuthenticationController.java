@@ -1,9 +1,10 @@
 package com.najkhan.javaNotesApi.Controller;
 
-import com.najkhan.javaNotesApi.model.LoginResponse;
-import com.najkhan.javaNotesApi.model.LoginUserDto;
-import com.najkhan.javaNotesApi.model.RegisterUserDto;
+import com.najkhan.javaNotesApi.model.responses.LoginResponse;
+import com.najkhan.javaNotesApi.model.requests.LoginUserRequest;
+import com.najkhan.javaNotesApi.model.requests.RegisterUserRequest;
 import com.najkhan.javaNotesApi.model.Users;
+import com.najkhan.javaNotesApi.model.responses.SignupResponse;
 import com.najkhan.javaNotesApi.services.AuthenticationService;
 import com.najkhan.javaNotesApi.services.JwtService;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +24,15 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<Users> register(@RequestBody RegisterUserDto registerUserDto) {
-        Users registeredUser = authenticationService.signup(registerUserDto);
-
-        return ResponseEntity.ok(registeredUser);
+    public ResponseEntity<SignupResponse> register(@RequestBody RegisterUserRequest registerUserRequest) {
+        Users registeredUser = authenticationService.signup(registerUserRequest);
+        SignupResponse signupResponse = new SignupResponse(registeredUser.getUsername());
+        return ResponseEntity.ok(signupResponse);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        Users authenticatedUser = authenticationService.authenticate(loginUserDto);
+    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserRequest loginUserRequest) {
+        Users authenticatedUser = authenticationService.authenticate(loginUserRequest);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 

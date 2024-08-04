@@ -1,4 +1,4 @@
-package com.najkhan.javaNotesApi.model;
+package com.najkhan.javaNotesApi.model.responses;
 
 import lombok.Builder;
 

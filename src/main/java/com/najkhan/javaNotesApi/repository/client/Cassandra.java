@@ -12,9 +12,6 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 @EnableCassandraRepositories(basePackages = "com.najkhan.javaNotesApi.repository")
 public class Cassandra {
 
-    /*
-     * Factory bean that creates the com.datastax.oss.driver.api.core.CqlSession instance
-     */
     @Bean
     public CqlSessionFactoryBean session(CassandraConfig cassandraConfig) {
 
