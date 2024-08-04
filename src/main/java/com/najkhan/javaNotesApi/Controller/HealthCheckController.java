@@ -18,12 +18,6 @@ public class HealthCheckController {
     @Autowired
     HealthCheckService healthCheckService;
 
-    private final UsersService userService;
-
-    public HealthCheckController(UsersService userService) {
-        this.userService = userService;
-    }
-
     @GetMapping("/health")
     public ResponseEntity<Map<Downstream, Status>> handleHealthCheck() {
         return ResponseEntity.ok(healthCheckService.getHealthCheckStatus());
