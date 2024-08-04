@@ -1,9 +1,9 @@
-package com.najkhan.javaNotesApi.model;
+package com.najkhan.javaNotesApi.model.requests;
 
 import lombok.Data;
 
 @Data
-public class RegisterUserDto {
+public class RegisterUserRequest {
     private Integer id;
     private String email;
 

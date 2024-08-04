@@ -1,4 +1,4 @@
-package com.najkhan.javaNotesApi.repository;
+package com.najkhan.javaNotesApi.model;
 
 import com.najkhan.javaNotesApi.model.Status;
 import lombok.Data;
