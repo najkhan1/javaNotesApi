@@ -17,6 +17,7 @@ public class Cassandra {
 
         CqlSessionFactoryBean session = new CqlSessionFactoryBean();
         session.setContactPoints(cassandraConfig.getHost());
+        session.setPort(cassandraConfig.getPort());
         session.setKeyspaceName(cassandraConfig.getKeyspace());
         session.setLocalDatacenter(cassandraConfig.getDatacenter());
 

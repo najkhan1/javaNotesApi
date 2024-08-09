@@ -3,13 +3,16 @@ package com.najkhan.javaNotesApi.configuration;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
-@RequiredArgsConstructor
 @ConfigurationProperties("cassandra")
 public class CassandraConfig {
-    private final String host;
-    private final String keyspace;
-    private final String datacenter;
+//    @Value(value = "${cassandra.host}")
+    private  String host;
+    private  String keyspace;
+    private  String datacenter;
+    private Integer port;
+
 }
