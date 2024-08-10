@@ -46,7 +46,7 @@ public class NotesController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<NoteResponse>> getNotes() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -55,7 +55,7 @@ public class NotesController {
         return ResponseEntity.ok(notesService.getNotes(currentUserEmail));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<NotesResponse> createNote(@RequestBody CreateNoteRequest createNoteRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -90,7 +90,7 @@ public class NotesController {
         }
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public ResponseEntity<NotesResponse> updateNote(@RequestBody UpdateNoteRequest updateNoteRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
