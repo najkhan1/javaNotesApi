@@ -67,7 +67,7 @@ dependencies {
 	testImplementation 'org.cassandraunit:cassandra-unit:4.3.1.0'
 //	testImplementation 'org.cassandraunit:cassandra-unit'
 	testImplementation 'org.cassandraunit:cassandra-unit-spring:4.3.1.0'
-	testImplementation 'junit:junit'
+//	testImplementation 'junit:junit:5.1'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.yaml:snakeyaml:2.2'
 
