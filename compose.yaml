@@ -1,5 +1,6 @@
 services:
   cassandra:
+    container_name: cassandra
     image: 'cassandra:4.1.0'
     environment:
       - 'CASSANDRA_DC=dc1'
@@ -10,6 +11,55 @@ services:
       - notes-api
     volumes:
       - db-data:/etc/data
+    healthcheck:
+      test: [ "CMD-SHELL", "cqlsh" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+#  cassandra-seeder:
+#    container_name: cassandra-seeder
+#    image: 'cassandra:4.1.0'
+#    environment:
+#      - 'CASSANDRA_DC=dc1'
+#      - 'CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch'
+#    command:
+#      ["cqlsh", "-e" ,"-f /etc/data/schema.cql cassandra 9042"]
+#    ports:
+#      - 9043:9042
+#    networks:
+#      - notes-api
+#    volumes:
+#      - db-data2:/etc/data
+#      - /home/najkhan/Documents/projects/javaNotesApi/src/main/java/com/najkhan/javaNotesApi/cassandra/schema.cql:/etc/data/schema.cql
+#    healthcheck:
+#      test: [ "CMD-SHELL", "cqlsh" ]
+#      interval: 10s
+#      retries: 5
+#      start_period: 30s
+#      timeout: 10s
+#    depends_on:
+#      cassandra:
+#          condition: service_healthy
+#          restart: true
+
+  notesapi:
+    container_name: notes_api
+    build: .
+    env_file:
+      - src/main/resources/local.env
+    ports:
+      - 8080:8080
+    networks:
+      - notes-api
+    depends_on:
+      cassandra:
+        condition: service_healthy
+        restart: true
+#      cassandra-seeder:
+#        condition: service_healthy
+#        restart: true
 
 networks:
   notes-api:
@@ -17,3 +67,4 @@ networks:
 
 volumes:
   db-data:
+  db-data2:
